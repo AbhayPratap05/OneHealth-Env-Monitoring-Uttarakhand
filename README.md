@@ -1,26 +1,27 @@
 # One Health Environmental Risk Monitoring - Uttarakhand
 
 - (Darft)
-A geospatial data workflow that connects satellite-derived environmental data
-(LULC change, waterbody degradation) with health infrastructure accessibility
-to produce district-level One Health risk scores for Uttarakhand, India.
+
+A Remote Sensing and GIS based Decision Support System for Environmental Health Risk Assessment in Uttarakhand.
+
+A geospatial data workflow that connects satellite-derived environmental data with health infrastructure accessibility to produce district-level One Health risk scores for Uttarakhand, India.
 
 Built to demonstrate how remote sensing and GIS can support environmental risk
 detection and inform field diagnostic workflows, aligned with the One Health
 framework linking human, animal, and environmental health.
 
 ## Study Area
-Dehradun · Haridwar · Pauri Garhwal · Tehri Garhwal — Uttarakhand, India
+Dehradun · Haridwar · Pauri Garhwal · Tehri Garhwal - Uttarakhand, India
 
 ## Data Sources
 | Layer | Source | Years |
 |---|---|---|
-| LULC 50K maps | Bhuvan (ISRO-NRSC) | 2015–16, 2022–23 |
-| Satellite imagery | Resourcesat-2A LISS-III via Bhoonidhi | 2024 |
-| Waterbody Atlas | Bhuvan | 2015, 2022 |
-| District shapefiles | Survey of India | - |
-| Health facilities | data.gov.in | 2022 |
-| Livestock statistics | MoAFW district data | 2019 |
+| Admin boundaries (district) | Survey of India | 2025 |
+| Admin boundaries (taluk) | Survey of India | 2025 |
+| LISS-III tiles  | Bhoonidhi | 2016, 2022, 2025 |
+| District shapefiles | data.gov.in | - |
+| Health facilities | data.gov.in | 2015-22 |
+| Animal husbandry | data.gov.in | 2024 |
 
 ## Workflow
 1. Data inventory & spatial baseline (`notebooks/01_data_inventory.ipynb`)

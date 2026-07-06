@@ -1,0 +1,23 @@
+# Large raw files
+data/raw/
+*.tif
+*.img
+*.ecw
+*.jp2
+
+# QGIS
+*.qgs~
+*.qgz~
+*.log
+*.bak
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.egg-info/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
