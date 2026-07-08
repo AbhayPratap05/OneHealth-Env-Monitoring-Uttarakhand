@@ -2,27 +2,66 @@
 
 import matplotlib.pyplot as plt
 
-def save_figure(fig, path, dpi=300):
+def plot_boundaries(
+    districts,
+    taluks=None,
+    title=None,
+    district_facecolor="#FDB863",
+    district_edgecolor="black",
+    taluk_edgecolor="white",
+    figsize=(8, 8),
+):
 
-    path.parent.mkdir(parents=True, exist_ok=True)
+    fig, ax = plt.subplots(figsize=figsize)
 
-    fig.savefig(
-        path,
-        dpi=dpi,
-        bbox_inches="tight"
+    districts.plot(
+        ax=ax,
+        facecolor=district_facecolor,
+        edgecolor=district_edgecolor,
+        linewidth=1.2,
     )
 
-def plot_boundaries(districts, taluks=None, title=None):
-    fig, ax = plt.subplots(figsize=(8, 8))
-
-    districts.plot(ax=ax, edgecolor="black", facecolor="none")
-
     if taluks is not None:
-        taluks.plot(ax=ax, edgecolor="red", facecolor="none")
+        taluks.plot(
+            ax=ax,
+            facecolor="none",
+            edgecolor=taluk_edgecolor,
+            linewidth=0.4,
+        )
 
-    if title is not None:
-        ax.set_title(title)
+    if title:
+        ax.set_title(title, fontsize=16)
 
     ax.set_axis_off()
+    plt.tight_layout()
+
+    return fig, ax
+
+def plot_india_context(
+    india,
+    study_area,
+    title="Study Area within India",
+):
+
+    fig, ax = plt.subplots(figsize=(8, 8))
+
+    india.plot(
+        ax=ax,
+        facecolor="#DDDDDD",
+        edgecolor="black",
+        linewidth=0.4,
+    )
+
+    study_area.plot(
+        ax=ax,
+        facecolor="#FDB863",
+        edgecolor="red",
+        linewidth=1.2,
+    )
+
+    ax.set_title(title)
+
+    ax.set_axis_off()
+    plt.tight_layout()
 
     return fig, ax
