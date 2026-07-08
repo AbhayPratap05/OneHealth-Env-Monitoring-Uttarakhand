@@ -88,7 +88,7 @@ def open_raster(path):
 # ================ HMIS ============================
 
 def get_hmis_files():
-    return sorted(HEALTH.glob("*.xls"))
+    return sorted(HEALTH.glob("*.xlsx"))
 
 # ================ Census ============================
 
@@ -98,4 +98,9 @@ def get_census_files():
 # ================ Livestock ============================
 
 def get_livestock_file():
-    pdf = list(LIVESTOCK.glob("*.pdf"))
+    pdfs = list(LIVESTOCK.glob("*.pdf"))
+
+    if len(pdfs) == 0:
+        return None
+    
+    return pdfs[0]
