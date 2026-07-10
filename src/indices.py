@@ -31,10 +31,18 @@ def save_index(index_array, metadata, output_path):
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
+    NODATA = -9999.0
+
+    index_array = np.where(
+        np.isnan(index_array),
+        NODATA,
+        index_array,
+    )
+
     metadata.update(
         dtype="float32",
         count=1,
-        nodata=np.nan,
+        nodata=NODATA,
     )
 
     with rasterio.open(output_path, "w", **metadata) as dst:
