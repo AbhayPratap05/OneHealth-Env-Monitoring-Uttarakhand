@@ -10,3 +10,4 @@ shapely==2.0.4
 pyproj==3.6.1
 jupyter==1.0.0
 seaborn==0.13.2
+openpyxl==3.1.5
