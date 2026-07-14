@@ -95,3 +95,22 @@ def get_hmis_data(FILES, KEEP, Out_path):
     )
     print(hmis_summary)
     return hmis_summary
+
+# -------------------- Extract Livestock Data  --------------------------
+
+def get_livestock_data(Input_path, Out_path):
+
+    study_districts = [
+    "Dehradun",
+    "Haridwar",
+    "Pauri",
+    ]
+
+    livestock_summary = pd.read_csv(Input_path).query("District in @study_districts").sort_values("District")
+
+    livestock_summary.to_csv(
+    Out_path / "livestock.csv",
+    index=False,
+    )
+    print(livestock_summary)
+    return livestock_summary
