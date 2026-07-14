@@ -47,11 +47,51 @@ def get_dist_totals(FILES, KEEP, Out_path):
             "ST_Rate": round(district_row["P_ST"] / total_pop * 100, 2),
         })
 
-    summary = pd.DataFrame(records)
-    summary.to_csv(
+    pda_summary = pd.DataFrame(records)
+    pda_summary.to_csv(
         Out_path / "census_district_summary.csv",
         index=False,
     )
 
-    print(summary)
-    return summary
+    print(pda_summary)
+    return pda_summary
+
+# -------------------- Extract HMIS Data  --------------------------
+
+def get_hmis_data(FILES, KEEP, Out_path):
+    records = []
+
+    for district, file in FILES.items():
+        df = pd.read_excel(file, header=None)
+
+        district_record = {
+            "District": district,
+        }
+
+        for search_text, column_name in KEEP.items():
+            match = df[
+                df[2]
+                .astype(str)
+                .str.contains(
+                    search_text,
+                    case=False,
+                    na=False,
+                    regex=False,
+                )
+            ]
+
+            if len(match):
+                district_record[column_name] = match.iloc[0, 4]
+
+            else:
+                district_record[column_name] = None
+
+        records.append(district_record)
+
+    hmis_summary = pd.DataFrame(records)
+    hmis_summary.to_csv(
+        Out_path / "hmis_district_summary.csv",
+        index=False,
+    )
+    print(hmis_summary)
+    return hmis_summary
