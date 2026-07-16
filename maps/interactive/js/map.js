@@ -122,6 +122,49 @@ function initMap() {
     maxZoom: 18,
   }).addTo(_map);
 
+// Reset button
+const ResetControl = L.Control.extend({
+  options: {
+    position: 'topleft'
+  },
+
+  onAdd: function () {
+    const container = L.DomUtil.create(
+      'div',
+      'leaflet-bar leaflet-control leaflet-control-custom'
+    );
+
+    container.innerHTML = '&#8635;'; // ↻
+    container.title = 'Reset Dashboard';
+    container.className = 'leaflet-bar leaflet-control';
+
+    Object.assign(container.style, {
+      width: '30px',
+      height: '30px',
+      background: '#161b22',
+      color: '#fff',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: '18px',
+      cursor: 'pointer'
+    });
+
+    // Prevent map interactions
+    L.DomEvent.disableClickPropagation(container);
+    L.DomEvent.disableScrollPropagation(container);
+
+    L.DomEvent.on(container, 'click', function (e) {
+      L.DomEvent.stop(e);
+      location.reload();
+    });
+
+    return container;
+  }
+});
+
+_map.addControl(new ResetControl());
+
   return _map;
 }
 
